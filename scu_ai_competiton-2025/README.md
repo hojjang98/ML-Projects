@@ -35,7 +35,7 @@ scu_ai_competiton-2025/
 ├── logs/
 ├── submission/
 └── models/
-'''
+```
 
 ---
 
