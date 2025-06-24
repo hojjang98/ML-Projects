@@ -27,10 +27,6 @@ The objective is to predict whether an individual will **accept a marketing camp
 
 ---
 
-> Example model file: `models/2025-06-23_lgbm_optuna_voting.py`
-
----
-
 ## 🗂 Folder Structure
 
 ```bash
