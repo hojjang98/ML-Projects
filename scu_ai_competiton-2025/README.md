@@ -19,11 +19,12 @@ The objective is to predict whether an individual will **accept a marketing camp
 ## 🧪 Techniques Applied
 
  Missing value imputation (mode / median)  
- Feature scaling (StandardScaler) and one-hot encoding  
- LightGBM, RandomForest, LogisticRegression  
- Ensemble modeling using VotingClassifier  
+ Feature scaling (StandardScaler) and one-hot encoding   
+ Ensemble modeling (VotingClassifier, StackingClassifier)   
  Hyperparameter tuning with Optuna  
  Best model tracking day-by-day
+ LightGBM, RandomForest, GradientBoosting  
+ Feature interaction engineering (submission 10)  
 
 ---
 
@@ -41,9 +42,10 @@ scu_ai_competiton-2025/
 
 ## 🏆 Best Performance
 
-- **Best AUC**: `0.8515`  
-- **Model**: Optuna-tuned VotingClassifier (LGBM + RF + LogisticRegression)  
-- **Date**: 2025-06-23
+- **Best AUC**: `0.8953`  
+- **Model**: Optuna-tuned `LGBMClassifier` (no ensemble)  
+- **Submission**: `9.submission`  
+- **Date**: 2025-06-24
 
 ---
 
@@ -58,9 +60,13 @@ scu_ai_competiton-2025/
 
 ## 📌 Notes
 
-All experiments are tracked by date with versioned model scripts.  
-Preprocessing is integrated within each model pipeline.  
-This structure emphasizes **reproducibility**, **experiment traceability**, and **progress logging**.
+- All experiments are tracked by date with versioned model scripts.  
+- Preprocessing is integrated within each model pipeline.  
+- This structure emphasizes **reproducibility**, **experiment traceability**, and **progress logging**.
+- Feature engineering includes domain-inspired aggregates and interaction features.
+- Optuna consistently outperformed RandomizedSearchCV for LGBM.
+- Interestingly, the **simplest tuned model (LGBM only)** yielded the highest score.
+
 
 📂 Dataset is not included. Please refer to the [Kaggle competition page](https://www.kaggle.com/competitions/3-ai) to download the data.
 
