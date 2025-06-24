@@ -1,0 +1,76 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode settings
+.vscode/
+
+# Environment files
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# macOS & Windows
+.DS_Store
+Thumbs.db
+
+# Virtual environment logs & pip cache
+pip-log.txt
+pip-delete-this-directory.txt
+__pypackages__/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Jupyter Notebook metadata
+*.nbconvert.ipynb
+
+# Model artifacts & data
+*.h5
+*.pkl
+*.joblib
+*.pt
+*.onnx
+*.tflite
+*.sav
+*.log
+
+# Large data files
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.parquet
+data/
+logs/
+submission/
+
+# Kaggle outputs
+*.zip
+*.tar.gz
+
+# Output files
+*.out
+*.aux
+*.log
+*.pdf
+
+# Checkpoints & cache
+*.checkpoint
+*.cache/
+.cache/
+__pycache__/
+
+# Other
+*.bak
+*.tmp
