@@ -1,9 +1,9 @@
 # 🧠 SCU AI Competition 2025 - Campaign Response Prediction
 
-This project was submitted for the **3rd SCU AI Competition** hosted on Kaggle:
+This repository contains our solution to the **3rd SCU AI Competition** hosted on Kaggle:  
 🔗 [Official Competition Page](https://www.kaggle.com/competitions/3-ai)
 
-The objective is to predict whether an individual will **accept a marketing campaign** using tabular personal and demographic data.
+The objective is to predict whether an individual will **accept a marketing campaign**, based on structured personal, behavioral, and demographic data.
 
 ---
 
@@ -12,30 +12,31 @@ The objective is to predict whether an individual will **accept a marketing camp
 * **Problem Type**: Binary Classification
 * **Target**: `Response` (1 = Accepted, 0 = Rejected)
 * **Metric**: AUC (Area Under the ROC Curve)
-* **Data**: Survey-based structured dataset with missing values and categorical variables
+* **Data**: Survey-based tabular dataset with missing values and categorical variables
 
 ---
 
 ## 🧪 Techniques Applied
 
-● Missing value imputation (mode / median)
-● Feature scaling (StandardScaler) and one-hot encoding
-● Ensemble modeling (VotingClassifier, StackingClassifier)
-● Hyperparameter tuning with Optuna
-● Best model tracking day-by-day
-● LightGBM, RandomForest, GradientBoosting
-● Feature interaction engineering (submission 10, 14)
-● Clustering-based feature engineering using KMeans (submission 11, 13)
+* Missing value imputation (mode / median)
+* Feature scaling using `StandardScaler`
+* Categorical encoding with one-hot encoding
+* Hyperparameter optimization using **Optuna**
+* Model ensembling (VotingClassifier, StackingClassifier)
+* Feature engineering: interaction terms, aggregated totals
+* Cluster-based segmentation using **KMeans** (submission 11, 13)
+* Day-by-day experiment logging and model versioning (submissions 1–20)
+* LightGBM as core model, with comparison to RandomForest, GradientBoosting
 
 ---
 
 ## 🗂 Folder Structure
 
 ```bash
-scu_ai_competiton-2025/
+scu_ai_competition-2025/
 ├── data/
 ├── logs/
-├── submission/
+├── submissions/
 └── models/
 ```
 
@@ -59,13 +60,11 @@ scu_ai_competiton-2025/
 
 ---
 
-## 📌 Notes
-
-* All experiments are tracked by date with versioned model scripts.
-* Preprocessing is integrated within each model pipeline.
-* This structure emphasizes **reproducibility**, **experiment traceability**, and **progress logging**.
-* Feature engineering includes domain-inspired aggregates, interaction features, and **cluster-based segmentation**.
-* Optuna consistently outperformed RandomizedSearchCV for LGBM.
-* Interestingly, the **simplest tuned model (LGBM only)** initially performed best, but clustering-based feature engineering ultimately achieved the **highest AUC**.
+📌 Notes
+*All experiments are tracked and logged per submission.
+*Preprocessing is embedded within each pipeline to ensure reproducibility.
+*Feature engineering combines domain insights, interaction features, and unsupervised segmentation.
+*Optuna consistently outperformed RandomizedSearchCV for LGBM.
+*While a simple Optuna-tuned LGBM performed strongly, cluster-based features ultimately achieved the highest AUC.
 
 📂 Dataset is not included. Please refer to the [Kaggle competition page](https://www.kaggle.com/competitions/3-ai) to download the data.
