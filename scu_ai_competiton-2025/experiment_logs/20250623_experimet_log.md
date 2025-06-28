@@ -1,4 +1,4 @@
-# 📅 Experiment Log 🟨 Day 1 (Submissions 1–5)
+# 📅 Experiment Log 🟨 Day 2 (Submissions 1–5)
 
 ## 🧪 Summary Table
 
