@@ -1,37 +1,47 @@
 # 🧠 ML-Projects
 
-A collection of machine learning projects, covering real-world forecasting, structured competitions, and classical ML problems.
+A curated collection of machine learning projects including real-world forecasting, structured competitions, and classical problems.
+
+---
 
 ## 📁 Projects
 
  **sales-forecasting_smallbiz**  
-Sales prediction for small businesses using public open data (e.g., energy consumption, POS). Focused on seasonal trends and time-series decomposition.
+Sales prediction for small businesses using public open data.  
+→ Focused on time-series feature engineering and seasonal patterns.
 
  **scu_ai_competitions**  
-Submissions and model experiments for AI competitions hosted by SCU.  
-Includes feature engineering, ensemble modeling (Voting/Stacking), Optuna-based tuning, and result tracking.  
-🏆 **Best Score**: Kaggle AUC `0.897686`
+Submissions and model experiments for the **SCU AI Competition 2025**.  
+→ Explores feature engineering, clustering, ensemble modeling.  
+🏆 **Best AUC**: `0.897686` (VotingClassifier with engineered features)
 
  **titanic-survival-prediction**  
-Baseline-to-ensemble exploration on the Titanic dataset.  
-Experiments include logistic regression, tree models, and hybrid ensemble approaches.
+Classic binary classification task on Titanic dataset.  
+→ Used for baseline experiments and ensemble practice.
+
+---
 
 ## 🛠 Tech Stack
 
 - Python, Jupyter Notebook
-- scikit-learn, LightGBM, XGBoost
-- pandas, matplotlib, seaborn
+- scikit-learn, XGBoost, LightGBM
+- pandas, numpy, matplotlib, seaborn
 - Optuna (hyperparameter tuning)
-- KMeans (clustering-based feature creation)
+
+---
 
 ## 🚀 Purpose
 
-This repo is a personal machine learning sandbox for applying concepts to real-world and competition-style problems.  
-Most projects are exploratory in nature and include full EDA, modeling, evaluation, and iteration.
+This repository is a hands-on playground for practicing and validating machine learning workflows.  
+Each project includes steps like EDA, feature engineering, model training, evaluation, and iteration.
 
-Some projects are from school-level competitions, with results and model development tracked for learning purposes.
+It serves as a **learning record**, with code structured for reusability and experimentation.
 
+---
 
-## 📌 Note
+## 📌 Notes
 
-This repository is actively updated with new projects and experiments.
+- Projects are standalone and modular.
+- This repo is continuously updated as new experiments are added.
+- Some models (e.g., SCU submissions) include day-by-day experiment tracking.
+
