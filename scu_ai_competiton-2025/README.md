@@ -9,38 +9,49 @@ The task is to predict whether a customer will accept a marketing campaign, base
 
 ## 📊 Task Overview
 
-* **Problem Type**: Binary Classification
-* **Target**: `Response` (1 = Accepted, 0 = Rejected)
-* **Metric**: AUC (Area Under the ROC Curve)
-* **Data**: Tabular dataset with missing values, categorical variables, and behavioral features
+- **Problem Type**: Binary Classification  
+- **Target**: `Response` (1 = Accepted, 0 = Rejected)  
+- **Metric**: AUC (Area Under the ROC Curve)  
+- **Data**: Tabular dataset with missing values, categorical variables, and behavioral signals
 
 ---
 
 ## 🧪 Techniques Applied
 
-* Missing value imputation (mode / median)
-* Feature scaling with `StandardScaler`
-* Categorical encoding (`LabelEncoder`)
-* Feature engineering with:
+- Missing value imputation (`mode`, `median`)
+- Feature scaling with `StandardScaler`
+- Categorical encoding using `LabelEncoder`
+- Extensive feature engineering:
   - Aggregated totals (e.g., total purchases)
-  - Ratio features (e.g., purchase/income)
-  - Interaction terms (e.g., wine × campaign acceptance)
-* Unsupervised clustering using `KMeans` (behavior & purchase pattern segmentation)
-* Model ensembling:
+  - Ratio features (e.g., purchase-to-income)
+  - Behavioral indicators (e.g., site visits / recency)
+  - Non-linear interactions (e.g., wine × campaign responsiveness)
+- 4-way clustering with `KMeans`:
+  - Behavior patterns
+  - Purchase styles
+  - Income-related behavior
+  - Time-based usage patterns
+- Model ensembling:
   - `VotingClassifier` (LGBM, RF, LR)
-  - `StackingClassifier` (some experiments)
-* Hyperparameter tuning with **Optuna**
-* Day-by-day experiment tracking (submissions 1–65)
+  - `StackingClassifier` (select submissions)
+- Hyperparameter tuning:
+  - `RandomizedSearchCV`
+  - `Optuna` (for single-model optimization)
+- Local evaluation via 5-Fold `StratifiedKFold` + AUC
+- Day-by-day experiment logging (`submissions 1–75`)
 
 ---
 
-## 🏆 Best Performance
+## 🏆 Best Performance (as of Submission 73)
 
-* **Best AUC**: `0.897686`
-* **Model**: `VotingClassifier (LGBM:RF:LR = 6:2:2)`  
-  with engineered features + clustering (n=4)
-* **Submission**: `61.submission`
-* **Date**: 2025-07-07
+| Metric        | Value                     |
+|---------------|---------------------------|
+| **Best AUC**  | `0.900233`                |
+| **Model**     | `VotingClassifier (LGBM:RF:LR = 6:2:2)` |
+| **Features**  | Engineered ratios + 4 clustering types |
+| **Tuning**    | LGBM tuned via `RandomizedSearchCV` |
+| **Submission**| `73.submission`           |
+| **Date**      | 2025-07-09                |
 
 ---
 
@@ -48,7 +59,7 @@ The task is to predict whether a customer will accept a marketing campaign, base
 
 ```bash
 scu_ai_competition-2025/
-├── data/
-├── logs/
-├── submissions/
-└── models/
+├── data/               # Training/test sets
+├── logs/               # Experiment notes (daily logs)
+├── submissions/        # Output CSVs for Kaggle submission
+└── models/             # Saved models (optional)
