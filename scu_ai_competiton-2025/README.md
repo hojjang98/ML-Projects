@@ -38,20 +38,49 @@ The task is to predict whether a customer will accept a marketing campaign, base
   - `RandomizedSearchCV`
   - `Optuna` (for single-model optimization)
 - Local evaluation via 5-Fold `StratifiedKFold` + AUC
-- Day-by-day experiment logging (`submissions 1–75`)
+- Day-by-day experiment logging (`submissions 1–85`)
 
 ---
 
-## 🏆 Best Performance (as of Submission 73)
+## 🏆 Best Performance
 
-| Metric        | Value                     |
-|---------------|---------------------------|
-| **Best AUC**  | `0.900233`                |
-| **Model**     | `VotingClassifier (LGBM:RF:LR = 6:2:2)` |
-| **Features**  | Engineered ratios + 4 clustering types |
-| **Tuning**    | LGBM tuned via `RandomizedSearchCV` |
-| **Submission**| `73.submission`           |
-| **Date**      | 2025-07-09                |
+| Metric         | Value                                                         |
+|----------------|---------------------------------------------------------------|
+| **Best AUC**   | `0.902074`                                                    |
+| **Best Method**| File-based **Soft Blending** of top 3 submissions             |
+| **Files Used** | `11.submission`, `61.submission`, `73.submission`            |
+| **Features**   | Engineered ratios + clustering + interactions                 |
+| **Model(s)**   | VotingClassifier (LGBM:RF:LR = 6:2:2), but blending was model-free |
+| **Date**       | 2025-07-11                                                    |
+
+
+---
+
+## ✅ Final Summary (Submissions 81–85)
+
+### 🥇 Final Best Score: `0.902074` (Submission 83)
+
+After 85 carefully logged experiments, the final best result was achieved via **file-level soft blending** of the top 3 submission files (`11`, `61`, `73`).  
+This blending strategy outperformed all model-level approaches, including deep stacking and feature engineering-heavy ensembles.
+
+### 🔧 Final Strategies That Worked
+
+- **Soft Blending** of top submission outputs (prediction-level averaging)
+- **Balanced Feature Engineering**:
+  - Key ratio-based features
+  - Non-linear interactions
+  - Carefully selected cluster features (Behavior, Purchase, Income, Time)
+- **LGBMClassifier** with `RandomizedSearchCV` for tuning
+- **VotingClassifier** with LGBM, RF, LR (weights = 6:2:2) as core architecture
+- **Feature selection** based on importance (zero-importance pruning)
+- **5-Fold Stratified CV** for stable local validation
+
+### 🔚 Final Takeaway
+
+> 🎯 _“Simple models with strong features, combined wisely, beat complex pipelines.”_
+
+The combination of strategic blending, disciplined feature construction, and systematic experimentation led to a **Kaggle AUC of 0.902074**,  
+marking a strong finish to the SCU AI Competition 2025.
 
 ---
 
