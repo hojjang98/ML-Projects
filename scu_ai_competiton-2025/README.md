@@ -52,6 +52,8 @@ The task is to predict whether a customer will accept a marketing campaign, base
 | **Features**   | Engineered ratios + clustering + interactions                 |
 | **Model(s)**   | VotingClassifier (LGBM:RF:LR = 6:2:2), but blending was model-free |
 | **Date**       | 2025-07-11                                                    |
+| **Award**      | 🥉 *Honorable Mention* (장려상) – SCU AI Competition 2025     |
+
 
 
 ---
@@ -75,12 +77,17 @@ This blending strategy outperformed all model-level approaches, including deep s
 - **Feature selection** based on importance (zero-importance pruning)
 - **5-Fold Stratified CV** for stable local validation
 
+---
+
 ### 🔚 Final Takeaway
 
 > 🎯 _“Simple models with strong features, combined wisely, beat complex pipelines.”_
 
 The combination of strategic blending, disciplined feature construction, and systematic experimentation led to a **Kaggle AUC of 0.902074**,  
 marking a strong finish to the SCU AI Competition 2025.
+
+🏅 This performance was officially recognized with a **🥉 Honorable Mention (장려상)** in the competition.
+
 
 ---
 
