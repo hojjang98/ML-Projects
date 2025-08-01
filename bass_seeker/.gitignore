@@ -1,0 +1,29 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints
+
+# Jupyter Notebook metadata
+.ipynb_checkpoints/
+
+# Virtual environments
+.env/
+.venv/
+ENV/
+env/
+venv/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Local config files
+*.log
+*.sqlite3
+
+# Token / credentials (if used)
+secrets.json
+credentials.json
+
+# Streamlit specific
+.streamlit/

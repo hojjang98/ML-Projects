@@ -1,0 +1,14 @@
+# Core packages
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+
+# Spotify API wrapper
+spotipy>=2.23.0
+
+# (Optional) for UI
+streamlit>=1.25.0
+
+# (Optional) for visualizing similarity space
+matplotlib>=3.4.0
+seaborn>=0.11.0
