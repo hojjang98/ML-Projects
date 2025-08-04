@@ -1,29 +1,16 @@
-# Byte-compiled / cache
+# Python cache
 __pycache__/
 *.py[cod]
-*.ipynb_checkpoints
 
-# Jupyter Notebook metadata
+# Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
-# Virtual environments
-.env/
-.venv/
-ENV/
-env/
-venv/
+# Audio data (YouTube downloaded)
+data/audio_raw/
+*.wav
+*.webm
+*.m4a
 
-# OS metadata
+# System
 .DS_Store
 Thumbs.db
-
-# Local config files
-*.log
-*.sqlite3
-
-# Token / credentials (if used)
-secrets.json
-credentials.json
-
-# Streamlit specific
-.streamlit/
