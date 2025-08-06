@@ -2,59 +2,63 @@
 
 > _“Not who you listen to — but what you hear.”_
 
-**Bass Seeker** is a sound-first exploration tool that identifies and compares songs with strong, deep, and rich **bass frequency content**.
+**Bass Seeker** is a prototype music analysis and recommendation project focused on **bass frequency content**.
 
-Rather than relying on genre tags or metadata, this project analyzes the actual **audio waveform** to quantify how "bass-heavy" a track is.
+Instead of relying on genre, artist, or popularity, it explores the **sound itself** — quantifying how "bass-heavy" a song is through actual audio analysis.
+
+The goal isn't to build a product, but to **demonstrate a novel way of thinking about music recommendation**:  
+grounded in the **waveform**, not the metadata.
 
 ---
 
-## 🎯 Project Vision
+## 🎯 Project Purpose
 
-- Discover songs with **bass-forward sonic characteristics**
-- Go beyond metadata — recommend based on how a song *sounds*, not who made it
-- Assist DJs, producers, and bass lovers in **exploring low-end energy** in music
+- Showcase a concept for **sound-based music discovery**, especially for low-end rich tracks  
+- Explore how **quantitative analysis of audio** can lead to alternative recommendation logic  
+- Serve as a proof-of-concept for how audio features like **low-frequency energy** can inform similarity  
+- Provide a **self-contained implementation** that researchers, hobbyists, or students can extend
 
 ---
 
 ## 🔍 What It Does
 
-- Accepts `.wav` audio files as input (typically downloaded from YouTube)
-- Analyzes each track's **low-frequency energy** using `librosa` and STFT
-- Visualizes waveforms and ranks songs based on bass intensity
-- Helps compare the **bass profile** of known and unknown songs
-
----
-
-## ⚙️ How It Works
-
-1. You collect `.wav` files of songs you want to compare  
-2. The system performs spectral analysis via STFT and calculates **low-end energy**
-3. Each song is assigned a "bass score"  
-4. Songs can be visualized and compared by their bass characteristics
+- Accepts `.wav` files (typically downloaded from YouTube)  
+- Uses `librosa` and STFT to extract features like **low-end energy**, spectral centroid, etc.  
+- Ranks and visualizes tracks by their **bass profile**  
+- Lays the foundation for sound-based **recommendation without genre tags**
 
 ---
 
 ## 📁 Example Use Case
 
-- You love **“Them Changes” by Thundercat**  
-- You want to find tracks that **feel similar** in terms of low-end richness  
-- `bass_seeker` helps you identify and visualize candidates — **without any artist/genre bias**
+You love **"Them Changes" by Thundercat**  
+→ You want to discover songs that "feel" similar — not in genre, but in **low-end sonic character**  
+→ `bass_seeker` helps visualize and compare candidates based on **true bass presence**
+
+---
+
+## ⚙️ How It Works
+
+1. Collect `.wav` files of songs you want to analyze (usually via YouTube + `yt-dlp`)  
+2. Extract audio features using `librosa` (e.g., low-frequency energy)  
+3. Visualize and compare results to reveal which songs emphasize the bass spectrum  
+4. (Optional) Use similarity scoring to suggest other candidates from pre-analyzed datasets
 
 ---
 
 ## 🧱 Tech Stack
 
-- Python (NumPy, Pandas)
-- `librosa` for audio analysis
-- `yt-dlp` + `ffmpeg` for audio extraction from YouTube
-- `matplotlib` for waveform and comparison visualizations
+- Python (`NumPy`, `Pandas`)  
+- `librosa` for audio feature extraction  
+- `yt-dlp` + `ffmpeg` for audio collection  
+- `matplotlib` for visualization
 
 ---
 
-## 🚫 No Spotify Needed
+## 🚫 No Spotify Dependency
 
-This version of `bass_seeker` does **not** rely on the Spotify Web API.  
-Everything is handled locally using real audio files, making the system **self-contained** and **flexible**.
+This project does **not** use Spotify Web API.  
+It operates entirely on **local audio files**, making it lightweight, transparent, and adaptable.
 
 ---
 
@@ -66,4 +70,4 @@ MIT License
 
 ## 🙋‍♂️ Author
 
-Created by [hojjang98](https://github.com/hojjang98) — powered by subwoofers and scientific curiosity.
+Created by [hojjang98](https://github.com/hojjang98) — driven by low frequencies and curiosity.
