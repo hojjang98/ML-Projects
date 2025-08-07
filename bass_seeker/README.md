@@ -2,63 +2,79 @@
 
 > _“Not who you listen to — but what you hear.”_
 
-**Bass Seeker** is a prototype music analysis and recommendation project focused on **bass frequency content**.
+**Bass Seeker** is a feature-based music recommendation prototype that explores **bass-heavy audio** using real sound analysis — not metadata.
 
-Instead of relying on genre, artist, or popularity, it explores the **sound itself** — quantifying how "bass-heavy" a song is through actual audio analysis.
-
-The goal isn't to build a product, but to **demonstrate a novel way of thinking about music recommendation**:  
-grounded in the **waveform**, not the metadata.
+Instead of asking _“What genre is this?”_, it asks _“How does it actually sound in the low end?”_
 
 ---
 
 ## 🎯 Project Purpose
 
-- Showcase a concept for **sound-based music discovery**, especially for low-end rich tracks  
-- Explore how **quantitative analysis of audio** can lead to alternative recommendation logic  
-- Serve as a proof-of-concept for how audio features like **low-frequency energy** can inform similarity  
-- Provide a **self-contained implementation** that researchers, hobbyists, or students can extend
+- Build a proof-of-concept for **sound-first recommendation**, especially focused on **bass frequency content**
+- Avoid reliance on artist, genre, or tags — recommend based on **waveform-level similarity**
+- Explore **automatic YouTube search and retrieval** using audio-derived keywords
+- Provide a working demo for music lovers, students, and researchers interested in **content-based audio retrieval**
 
 ---
 
 ## 🔍 What It Does
 
-- Accepts `.wav` files (typically downloaded from YouTube)  
-- Uses `librosa` and STFT to extract features like **low-end energy**, spectral centroid, etc.  
-- Ranks and visualizes tracks by their **bass profile**  
-- Lays the foundation for sound-based **recommendation without genre tags**
+- Accepts a single `.wav` **reference track**
+- Extracts its **bass-relevant features** using `librosa` (e.g., low-frequency energy, centroid, rolloff)
+- Generates **intelligent YouTube search queries** based on the song’s actual features  
+- Downloads candidate songs via `yt-dlp`
+- Measures **cosine similarity** between the reference and candidates
+- Outputs a ranked list of recommended songs — based on **sound**, not name
 
 ---
 
 ## 📁 Example Use Case
 
-You love **"Them Changes" by Thundercat**  
-→ You want to discover songs that "feel" similar — not in genre, but in **low-end sonic character**  
-→ `bass_seeker` helps visualize and compare candidates based on **true bass presence**
+You love the **bass tone of "Billie Jean"**, but don’t want another "Billie Jean remix"  
+→ You feed the song into `bass_seeker`  
+→ It analyzes the waveform and generates search queries like _"deep bass groove"_ or _"vintage funk bass"_  
+→ Downloads candidate songs from YouTube  
+→ Compares them based on **low-end features**  
+→ Outputs songs with **similar bass energy profiles** (not necessarily by the same artist)
 
 ---
 
 ## ⚙️ How It Works
 
-1. Collect `.wav` files of songs you want to analyze (usually via YouTube + `yt-dlp`)  
-2. Extract audio features using `librosa` (e.g., low-frequency energy)  
-3. Visualize and compare results to reveal which songs emphasize the bass spectrum  
-4. (Optional) Use similarity scoring to suggest other candidates from pre-analyzed datasets
+1. Provide a `.wav` reference track (e.g., downloaded via `yt-dlp`)
+2. `librosa` extracts five audio features:
+   - low-frequency energy
+   - spectral centroid
+   - spectral bandwidth
+   - rolloff
+   - zero-crossing rate
+3. Based on the values, a set of **semantic YouTube search queries** is generated
+4. YouTube search is performed automatically; `.wav` files are downloaded
+5. Candidates are ranked using **cosine similarity** of feature vectors
+6. Top-N similar tracks are returned
 
 ---
 
 ## 🧱 Tech Stack
 
-- Python (`NumPy`, `Pandas`)  
-- `librosa` for audio feature extraction  
-- `yt-dlp` + `ffmpeg` for audio collection  
-- `matplotlib` for visualization
+- Python (`NumPy`, `librosa`, `scipy`, `matplotlib`)
+- `yt-dlp` + `ffmpeg` for YouTube audio collection
+- Self-contained `.ipynb` notebook logic — no web dependencies
 
 ---
 
-## 🚫 No Spotify Dependency
+## ✅ No Metadata. No Spotify. Just Sound.
 
-This project does **not** use Spotify Web API.  
-It operates entirely on **local audio files**, making it lightweight, transparent, and adaptable.
+This system is intentionally **Spotify/API-independent**.  
+It operates **entirely offline** using only `.wav` audio, allowing full transparency and low resource use.
+
+---
+
+## 🧪 Experimental Direction
+
+- Currently uses 5-dimensional audio feature vectors  
+- Future upgrades could integrate `openl3`, `VGGish`, or `CLAP` for richer embeddings  
+- Streamlit interface possible for real-time interaction
 
 ---
 
@@ -70,4 +86,5 @@ MIT License
 
 ## 🙋‍♂️ Author
 
-Created by [hojjang98](https://github.com/hojjang98) — driven by low frequencies and curiosity.
+Created by [hojjang98](https://github.com/hojjang98)  
+Driven by low frequencies, curiosity, and signal-based thinking.
