@@ -1,148 +1,70 @@
 # 🚢 Titanic - Predicting Survival with Machine Learning
 
-Welcome aboard!  
-This project is a hands-on machine learning exploration using the famous Titanic dataset from Kaggle.  
-It’s basically the “Hello, World!” of data science — and here I am, diving in.
+> *My very first Kaggle-style ML project.*  
+This project was an entry point into machine learning competitions — a simple but iconic challenge to predict survival on the Titanic.  
+Since it was beginner-friendly, I wrapped it up fairly quickly, but it helped me learn the full workflow from EDA to submission.
 
 ---
 
-## 🎯 What I'm Trying to Do
-
-- Explore the dataset (EDA)
-- Make sense of the features and do some feature engineering
-- Train machine learning models (coming soon!)
-- Create and submit predictions to Kaggle
-- Learn and have fun while building my data science workflow
+## 🎯 Objectives
+- Practice a complete **Kaggle pipeline** (EDA → feature engineering → modeling → submission)  
+- Explore different ML models and ensemble strategies  
+- Learn how validation and Kaggle leaderboard scores can differ  
+- Build confidence before moving on to more complex projects  
 
 ---
 
 ## 📁 Project Structure
 
-```
+```bash
+
 titanic-survival-prediction/
-├── data/                  
-│   ├── train.csv
-│   ├── test.csv
-│   ├── train_processed.csv
-│   └── test_processed.csv
-│
-├── notebooks/             
-│   ├── 01_EDA.ipynb
-│   ├── 02_Modeling.ipynb
-│   └── 03_Final_Submission.ipynb
-│
-├── figures/              
-│   ├── Survival_Count.png
-│   ├── Age_Distribution.png
-│   └── ... (etc.)
-│
-├── submissions/           
-│   ├── submission_v1_soft_voting.csv
-│   ├── submission_v2_stacking.csv
-│   ├── ...
-│   └── submission_log.md
-│
-├── scripts/              
-├── models/                
-│
-├── requirements.txt       
-├── README.md              
-└── .gitignore            
+├── data/                # Raw and processed datasets (not included)
+├── figures/             # Visualizations (EDA, feature importance, etc.)
+├── notebooks/           # Jupyter notebooks (EDA, modeling, final submission)
+├── submissions/         # Kaggle submissions + log
+│   ├── submission_log.md
+│   ├── final_submission.csv
+│   └── submission_v*.csv
+├── requirements.txt     # Dependencies
+├── .gitignore           # Ignore rules
+└── README.md            # Project overview
+
 ```
 
 ---
 
-## 🛠️ Tech Stack
+## 🧪 Experiments & Results
 
-- Python 3.10.1  
-- pandas & numpy  
-- matplotlib & seaborn  
-- scikit-learn  
-- xgboost  
-- catboost  
-- optuna  
-- missingno
+| # | Model / Method | Validation Acc | Kaggle Score |
+|---|----------------|----------------|--------------|
+| 1 | VotingClassifier (RF, GBM, XGB, soft) | 0.8090 | 0.77751 |
+| 2 | StackingClassifier (LR meta) | 0.8034 | 0.77511 |
+| 3 | CatBoostClassifier | 0.7753 | 0.76315 |
+| 4 | Soft Voting + GridSearchCV | 0.7921 | **0.77990** |
+| 5 | RandomForest + Optuna tuning | 0.8146 | 0.77511 |
+| 6-8 | Feature Selection + Voting (GridSearchCV) | 0.8146 | 0.76555 |
 
----
-
-## 📝 Progress Log
-
-> This section will be updated as the project grows!
-
-- [x] EDA ➡️ [01_EDA.ipynb](./notebooks/01_EDA.ipynb)  
-- [x] Feature Engineering  
-- [x] Modeling ➡️ [02_Modeling.ipynb](./notebooks/02_Modeling.ipynb)  
-- [x] Kaggle Submission ➡️ [03_Final_Submission.ipynb](./notebooks/03_Final_Submission.ipynb)
+**Best Kaggle Score**: `0.77990` (Soft VotingClassifier with GridSearchCV)  
+**Best Validation Accuracy**: `0.8146` (Optuna-tuned RandomForest)  
 
 ---
 
-## 📈 Project Workflow
-
-Here’s how I actually worked through the Titanic survival prediction project:
-
-1. **EDA (Exploratory Data Analysis)**  
-   - Used `seaborn`, `missingno`, `matplotlib` to visualize survival by `Sex`, `Pclass`, and `Age`  
-   - Checked missing values and handled `Cabin`, `Embarked`, `Age`, and `Fare`  
-   - Explored feature relationships (e.g., `FamilySize`, `IsAlone`, `Title`) to prepare for modeling
-
-2. **Feature Engineering**  
-   - Extracted titles from the `Name` column (Mr, Mrs, Miss, etc.)  
-   - Created `FamilySize`, `IsAlone`, `CabinFlag` as new features  
-   - Encoded `Sex` and `Title` using `LabelEncoder`  
-   - Dropped or transformed less useful columns like `Cabin`, `Ticket`
-
-3. **Modeling**  
-   - Trained multiple models: RandomForest, GradientBoosting, XGBoost, CatBoost  
-   - Tuned hyperparameters using `GridSearchCV` and `Optuna`  
-   - Built ensemble models:  
-     - **Soft VotingClassifier** using RF, GB, XGB  
-     - **StackingClassifier** with Logistic Regression as meta-model  
-   - Applied feature selection using `SelectFromModel` (RandomForest 기준)
-
-4. **Evaluation & Submission**  
-   - Compared models using validation accuracy and Kaggle score  
-   - Best validation accuracy: **0.8146** (Optuna-tuned RF, VotingClassifier with feature selection)  
-   - Best Kaggle public score: **0.77990** (VotingClassifier with GridSearchCV tuning)  
-   - Saved and submitted predictions multiple times, with results tracked in `submission_log.md`
-
-5. **Wrap-up**  
-   - Cleaned up the project structure and notebooks  
-   - Saved key visualizations to `figures/` folder  
-   - Organized submissions, tracked model performance, and documented everything here  
-   - Ready to apply this full pipeline to a bigger, messier dataset next!
-
-
-## 🤓 Notes to Self
-
-- Keep code clean and modular
-- Try different models and compare results
-- Don’t be afraid to mess up — it’s all part of the game
-
+## 📊 What I Learned
+- Ensemble methods (Voting, Stacking) generally outperformed single models.  
+- Optuna gave the best validation accuracy, but not the best leaderboard score — **validation ≠ Kaggle performance**.  
+- Feature selection sometimes didn’t help; in fact, it could hurt.  
+- Submitting multiple times and tracking results in `submission_log.md` kept the workflow organized.  
 
 ---
 
-## 📚 What I Learned
-
-- Ensemble methods like Voting and Stacking tend to outperform individual models
-- Optuna tuning led to the highest validation accuracy, but not the best Kaggle score — lesson learned!
-- Validation performance doesn't guarantee leaderboard success → avoid overfitting!
-- Feature Selection with `SelectFromModel` didn’t always help (sometimes neutral or worse on leaderboard)
-- Submitting with clean, reproducible notebooks helps keep the workflow maintainable
+## ⚡ Reflections
+This project was **quick and manageable** — perfect as a first step.  
+It helped me practice the full ML competition cycle, and now I feel ready to tackle **bigger, messier datasets** where creativity and stronger pipelines matter.  
 
 ---
-
-## ⚠️ Limitations & Next Steps
-
-- Didn't yet explore SHAP values or permutation-based feature importance  
-- No pipeline automation or full script conversion — something to do in the next iteration  
-- Feature engineering followed mostly common practices; more creativity possible  
-- Kaggle test set is limited in feedback → private score may differ  
-- Plan to apply similar workflow to a more complex, real-world dataset next
-
----
-
 
 ## ✍️ Author
-
 Made with curiosity by [hojjang98](https://github.com/hojjang98)  
-Feel free to clone, fork, or just take a peek 😄
+*First project complete. On to the next one!* 🚀
+

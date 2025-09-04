@@ -1,101 +1,113 @@
 # 🧠 SCU AI Competition 2025 - Campaign Response Prediction
 
-This repository contains my solution to the **3rd SCU AI Competition** hosted on Kaggle:  
-🔗 [Official Competition Page](https://www.kaggle.com/competitions/3-ai)
-
-The task is to predict whether a customer will accept a marketing campaign, based on structured survey data.
+This repository contains my full pipeline and experiments for the **3rd SCU AI Competition (2025)**.  
+The task was to predict whether a customer would accept a marketing campaign based on structured survey data.
 
 ---
 
-## 📊 Task Overview
+## 🎯 Objective
 
-- **Problem Type**: Binary Classification  
-- **Target**: `Response` (1 = Accepted, 0 = Rejected)  
-- **Metric**: AUC (Area Under the ROC Curve)  
-- **Data**: Tabular dataset with missing values, categorical variables, and behavioral signals
+- Build a high-performing binary classification model (Target: `Response`)
+- Handle missing values and categorical features effectively
+- Apply extensive **feature engineering** (ratios, interactions, clustering)
+- Explore ensemble methods and blending strategies
+- Track experiments systematically with daily logs
+
+---
+
+## 📊 Dataset
+
+- **Source**: Official SCU AI Competition dataset  
+- **Format**: Tabular data with categorical, numerical, and behavioral variables  
+- **Target**: `Response`  
+- **Metric**: AUC (Area Under ROC Curve)
+
+Key challenges:
+- Many missing values across features
+- Strong non-linear patterns
+- Need for domain-inspired feature engineering
 
 ---
 
 ## 🧪 Techniques Applied
 
-- Missing value imputation (`mode`, `median`)
-- Feature scaling with `StandardScaler`
-- Categorical encoding using `LabelEncoder`
-- Extensive feature engineering:
-  - Aggregated totals (e.g., total purchases)
-  - Ratio features (e.g., purchase-to-income)
-  - Behavioral indicators (e.g., site visits / recency)
-  - Non-linear interactions (e.g., wine × campaign responsiveness)
-- 4-way clustering with `KMeans`:
-  - Behavior patterns
-  - Purchase styles
-  - Income-related behavior
-  - Time-based usage patterns
-- Model ensembling:
-  - `VotingClassifier` (LGBM, RF, LR)
-  - `StackingClassifier` (select submissions)
-- Hyperparameter tuning:
-  - `RandomizedSearchCV`
-  - `Optuna` (for single-model optimization)
-- Local evaluation via 5-Fold `StratifiedKFold` + AUC
-- Day-by-day experiment logging (`submissions 1–85`)
+- **Preprocessing**
+  - Missing value imputation (`mode`, `median`)
+  - Scaling (`StandardScaler`)
+  - Encoding (`LabelEncoder` for categorical)
+
+- **Feature Engineering**
+  - Aggregates (e.g., total purchases, total spend)
+  - Ratios (e.g., purchases-to-income, visits-to-recency)
+  - Domain-inspired interactions (e.g., wine × campaign responsiveness)
+  - **Clustering (`KMeans`)**:
+    - Purchase styles
+    - Behavioral patterns
+    - Income-related usage
+    - Time/recency groups
+
+- **Modeling**
+  - RandomForest, LightGBM, Logistic Regression
+  - VotingClassifier (weights tuned)
+  - StackingClassifier (select trials)
+  - **Optuna** for hyperparameter optimization
+
+- **Evaluation**
+  - Local: 5-Fold Stratified CV (AUC)
+  - Public leaderboard on Kaggle
+  - Daily experiment tracking (`logs/`)
 
 ---
 
-## 🏆 Best Performance
+## 📈 Experiments & Submissions
 
-| Metric         | Value                                                         |
-|----------------|---------------------------------------------------------------|
-| **Best AUC**   | `0.902074`                                                    |
-| **Best Method**| File-based **Soft Blending** of top 3 submissions             |
-| **Files Used** | `11.submission`, `61.submission`, `73.submission`            |
-| **Features**   | Engineered ratios + clustering + interactions                 |
-| **Model(s)**   | VotingClassifier (LGBM:RF:LR = 6:2:2), but blending was model-free |
-| **Date**       | 2025-07-11                                                    |
-| **Award**      | 🥉 *Honorable Mention* (장려상) – SCU AI Competition 2025     |
+- **Total submissions**: 85 (2025-06-23 → 2025-07-11)  
+- **Logs**: stored in [`logs/`](./logs)  
+  - Each file = date-based log of experiments (`YYYYMMDD_experiment_log.md`)  
+  - Includes validation AUC, Kaggle AUC, notes
 
-
+Highlights:
+- `20250629_experiment_log.md` → First cluster-based features  
+- `20250703_experiment_log.md` → Optuna-tuned RF/LGBM  
+- `20250711_experiment_log.md` → Final blending strategy (`0.902074` AUC)
 
 ---
 
-## ✅ Final Summary (Submissions 81–85)
+## 🏆 Best Result
 
-### 🥇 Final Best Score: `0.902074` (Submission 83)
-
-After 85 carefully logged experiments, the final best result was achieved via **file-level soft blending** of the top 3 submission files (`11`, `61`, `73`).  
-This blending strategy outperformed all model-level approaches, including deep stacking and feature engineering-heavy ensembles.
-
-### 🔧 Final Strategies That Worked
-
-- **Soft Blending** of top submission outputs (prediction-level averaging)
-- **Balanced Feature Engineering**:
-  - Key ratio-based features
-  - Non-linear interactions
-  - Carefully selected cluster features (Behavior, Purchase, Income, Time)
-- **LGBMClassifier** with `RandomizedSearchCV` for tuning
-- **VotingClassifier** with LGBM, RF, LR (weights = 6:2:2) as core architecture
-- **Feature selection** based on importance (zero-importance pruning)
-- **5-Fold Stratified CV** for stable local validation
+- **Final AUC**: `0.902074` (Kaggle public LB)  
+- **Method**: **Soft Blending** of 3 best submissions (`11`, `61`, `73`)  
+- **Features**: Ratios + clustering + interaction terms  
+- **Core Models**: LightGBM, RF, Logistic Regression (Voting 6:2:2)  
+- **Recognition**: 🥉 *Honorable Mention (장려상)*
 
 ---
 
-### 🔚 Final Takeaway
+## 📚 What I Learned
 
-> 🎯 _“Simple models with strong features, combined wisely, beat complex pipelines.”_
-
-The combination of strategic blending, disciplined feature construction, and systematic experimentation led to a **Kaggle AUC of 0.902074**,  
-marking a strong finish to the SCU AI Competition 2025.
-
-🏅 This performance was officially recognized with a **🥉 Honorable Mention (장려상)** in the competition.
-
+- **Blending beats stacking**: Simple file-level soft blending outperformed complex model-level ensembles  
+- **Features > Models**: Well-designed ratios and clusters had more impact than exotic models  
+- **Optuna ≠ Kaggle success**: Highest local validation AUC didn’t guarantee leaderboard boost  
+- Importance of **systematic logging**: Daily logs made progress traceable and reproducible
 
 ---
 
-## 🗂 Folder Structure
+## 📁 Folder Structure
 
 ```bash
+
 scu_ai_competition-2025/
-├── data/               # Training/test sets
-├── logs/               # Experiment notes (daily logs)
-├── submissions/        # Output CSVs for Kaggle submission
-└── models/             # Saved models (optional)
+├── data/               # Competition dataset
+├── logs/               # Daily experiment logs (85 total)
+├── submissions/        # Output CSVs for Kaggle
+├── models/             # Saved models (optional)
+├── requirements.txt    # Dependencies
+└── README.md           # Project overview
+
+```
+
+---
+
+✍️ Maintained by hojjang98
+
+Final Kaggle AUC: 0.902074 · Awarded Honorable Mention 🥉
