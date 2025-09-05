@@ -1,163 +1,130 @@
 # 🏦 Loan Grade & Diabetes Classification (SCU AI Competition – Excellence Award)
 
-This project was developed for the **2nd AI Competition hosted by Seoul Cyber University**.  
-The competition involved solving two classification problems:
+This repository documents my participation in the **2nd AI Competition hosted by Seoul Cyber University**,  
+where I worked on two separate classification challenges:
 
 - **Loan Grade Prediction** (multi-class classification)  
 - **Diabetes Prediction** (binary classification)
 
 ---
 
-## 🏆 Award  
+## 🏆 Award
+
 **Excellence Award (우수상)**  
 Awarded based on the **average performance across both tasks.**
 
-### 🥇 Task 1: Loan Grade Prediction  
-- [Leaderboard Link](https://www.kaggle.com/competitions/2-ai-loan/leaderboard)
+- **Task 1: Loan Grade Prediction**  
+  📊 [Leaderboard](https://www.kaggle.com/competitions/2-ai-loan/leaderboard)
 
-### 🥈 Task 2: Diabetes Prediction  
-- [Leaderboard Link](https://www.kaggle.com/competitions/2-ai/leaderboard)
+- **Task 2: Diabetes Prediction**  
+  📊 [Leaderboard](https://www.kaggle.com/competitions/2-ai/leaderboard)
 
 ---
 
 ## 🔍 Problem Overview
 
-The competition involved two separate tabular classification problems:
+Both tasks involved **tabular structured data** requiring careful preprocessing and feature design:
 
 1. **Loan grade classification** based on customer financial information  
 2. **Diabetes classification** based on medical and demographic data
 
-The core challenge was to apply effective **preprocessing and feature engineering** strategies  
-to improve model performance in a **structured data** setting.
+The key challenge was to maximize performance through **feature engineering, model selection, and ensemble strategies**.
 
 ---
 
-## 📦 Baseline Code Overview
+## 📦 Baseline
 
-A basic starter notebook was provided as a baseline, applying a `RandomForestClassifier`  
-without significant preprocessing, feature engineering, or model tuning.
+A starter notebook was provided as a baseline. It used a simple `RandomForestClassifier` with minimal preprocessing.
 
-### 🔹 Baseline included:
-- Dropping ID and label columns  
-- Simple `train_test_split` (no cross-validation)  
-- No missing value treatment  
-- No engineered features  
+### Limitations of the baseline:
+- No missing value handling  
+- No feature engineering  
 - No hyperparameter tuning  
-- Single model: `RandomForestClassifier`
-
-While it served as a useful starting point, performance was limited by its simplicity.
+- Simple train/validation split (no cross-validation)  
+- Single model only  
 
 📄 [Baseline Notebook: 고객대출등급 완전 베이스.ipynb](./고객대출등급 완전 베이스.ipynb)
 
 ---
 
-## 🧪 Experiment Timeline Summary
+## 🧪 Task 1: Loan Grade Prediction
 
-Through 40+ submissions, I conducted extensive experimentation in iterative phases.
+### Experiment Phases
+- **Phase 1 (#1–#3):** Basic preprocessing and imputation  
+- **Phase 2 (#4–#12):** Feature engineering (e.g., interest burden ratio, employment-to-credit ratio)  
+- **Phase 3 (#6–#13):** Model exploration (LightGBM, CatBoost, RF, SVM) → LightGBM + ensemble performed best  
+- **Phase 4 (#21–#30):** Feature importance–based selection, stacking/voting  
+- **Phase 5 (#31–#47):** Hyperparameter tuning with Optuna; explored interactions  
 
-### 🔹 Phase 1: Establishing a Baseline (Submissions #1–#3)
-- Basic preprocessing (mean/median imputation)
-- Initial attempts at feature creation  
-- Minor performance gains observed
-
----
-
-### 🔹 Phase 2: Feature Engineering & Selection (Submissions #4–#12)
-- Introduced domain-informed features such as:  
-  - `이자부담율` (interest burden ratio)  
-  - `근로기간 대비 신용거래기간 비율` (ratio of employment period to credit history length)  
-- Applied scaling and encoding strategies  
-- 🔥 Best single-feature result achieved using `이자부담율` (`0.6935`)
+> **Highlight:** Best results achieved with **LightGBM + feature selection + ensemble voting**
 
 ---
 
-### 🔹 Phase 3: Model Exploration & Tuning (Submissions #6–#13)
-- Compared multiple models: LightGBM, CatBoost, RandomForest, SVM  
-- Eliminated underperformers  
-- Tuned LightGBM and introduced ensemble methods  
-- ✅ Best score in submission #13 using **LightGBM + Ensemble**
+## 🧪 Task 2: Diabetes Prediction
 
----
+### Experiment Phases
+- **Phase 1 (#1–#6):** Missing value treatment (domain-driven), initial feature creation  
+- **Phase 2 (#7–#13):** Model comparison → LightGBM again performed best  
+- **Phase 3 (#14–#20):** Interaction features (e.g., BMI × glucose, Age × HbA1c) → peak Kaggle score **0.811983**  
+- **Phase 4 (#21–#40):** Ensemble methods (voting, stacking), SMOTE, class weights, Optuna tuning  
 
-### 🔹 Phase 4: Feature Selection Refinement (Submissions #21–#30)
-- Applied feature importance-based selection  
-- Introduced ensemble voting/stacking with selected features  
-- Used regularization to reduce overfitting
-
----
-
-### 🔹 Phase 5: Post-peak Optimization (Submissions #31–#47)
-- Tested feature interaction and reordering strategies  
-- Conducted Optuna-based hyperparameter tuning  
-- Some regressions observed — highlighting the importance of simplicity
-
-Throughout, I emphasized **hypothesis-driven testing**, **reproducibility**, and **failure analysis**.
-
----
-
-### 🧠 Task 2: Diabetes Classification
-
-The second task involved predicting diabetes status using structured medical and demographic features.  
-This dataset included missing values and **class imbalance**, which required careful handling.
-
-📁 [Baseline Notebook (to be added)](./당뇨병 예측 이진분류(베이스라인 코드).ipynb)
-
----
-
-## 🧪 Experiment Timeline Summary (Task 2)
-
-Total of 40+ submissions, key stages:
-
-### 🔹 Phase 1: Data Cleaning & Feature Addition (#1–#6)
-- Handled missing values using domain logic  
-  (e.g., gender-based imputation, mode value replacement)  
-- Added custom features based on medical understanding  
-  (e.g., derived variables from hemoglobin A1c)  
-- ✅ Best improvement came from manual feature addition
-
----
-
-### 🔹 Phase 2: Model Comparison (#7–#13)
-- Evaluated LightGBM, CatBoost, RandomForest  
-- LightGBM showed best results even with minimal tuning
-
----
-
-### 🔹 Phase 3: Feature Engineering & Interaction (#14–#20)
-- Introduced feature interactions such as:  
-  - `[BMI × 혈당]`, `[나이 × 당화혈색소]`  
-- Submission #18 yielded highest score: **0.811983** on Kaggle
-
----
-
-### 🔹 Phase 4: Ensemble & Tuning (#21–#40)
-- Applied:
-  - Voting & Stacking  
-  - Class weight balancing  
-  - SMOTE for oversampling  
-  - Optuna for hyperparameter search  
-- F1 Macro peaked at **0.894** (validation), with Kaggle best at **0.811983**
+> **Highlight:** Validation F1 peaked at **0.894**, Kaggle best **0.811983**
 
 ---
 
 ## 🤖 Models Used
 
-| Model          | Used | Notes                              |
-|----------------|------|------------------------------------|
-| LightGBM       | ✅    | Best performer; highly tunable    |
-| CatBoost       | ✅    | Stable results; used selectively  |
-| XGBoost        | ✅    | Strong in final tuning stages     |
-| RandomForest   | ✅    | Baseline only                     |
-| SVM            | ❌    | Low performance; discarded        |
+| Model        | Usage               | Notes                                   |
+|--------------|---------------------|-----------------------------------------|
+| LightGBM     | ✅ Main model        | Best overall performance with tuning    |
+| CatBoost     | ✅ Secondary model   | Stable results, used in ensembles       |
+| XGBoost      | ✅ Final stages      | Helpful in weighted voting ensembles    |
+| RandomForest | ✅ Baseline          | Limited improvement beyond baseline     |
+| SVM          | ❌ Discarded         | Poor performance on structured data     |
 
 ---
 
 ## 💡 Key Learnings
 
-- Simple engineered features like `[당화혈색소, 혈당차이]` were highly predictive  
-- Excessively complex pipelines sometimes degraded generalization  
-- LightGBM + Feature Selection + Optuna formed the best-performing combo  
-- Pseudo-labeling and SMOTE were only effective under certain conditions
+- Simple engineered features (e.g., ratios, differences) can strongly boost performance  
+- Overly complex pipelines often reduced generalization  
+- Ensemble strategies (LightGBM + Optuna-tuned XGBoost/CatBoost) outperformed single models  
+- Class imbalance handling (SMOTE, class weights) required careful tuning to avoid overfitting  
 
-> 📌 This project taught me how **feature design, model selection, and ensemble strategies**  
-> interact to shape the final performance in real-world tabular ML tasks.
+---
+
+## 📂 Repository Structure
+
+```bash
+
+scu-loan-prediction/
+├── notebooks/
+│   ├── 고객대출등급 완전 베이스.ipynb
+│   └── 당뇨병 예측 이진분류(베이스라인 코드).ipynb
+├── README.md
+
+```
+
+## 📌 Reflections
+
+This project highlighted the importance of **structured experimentation** in tabular ML tasks:
+
+- Begin with simple baselines, then incrementally add preprocessing, features, and models  
+- Validate every hypothesis with proper cross-validation instead of relying on leaderboard luck  
+- Maintain reproducibility through careful documentation and organized submissions  
+
+Although the original competition notebooks are not fully preserved,  
+this archive captures the **workflow, reasoning, and lessons learned** that led to an **Excellence Award**.  
+
+---
+
+## 🔭 Future Work
+
+If revisited, potential improvements include:
+
+- **Explainability**: Applying SHAP or LIME to interpret key drivers of loan grades and diabetes outcomes  
+- **AutoML**: Leveraging frameworks like Optuna or FLAML to automate model search and parameter tuning  
+- **Feature Store**: Building reusable engineered features for future SCU or Kaggle-style competitions  
+- **Robust Imbalance Handling**: Exploring advanced resampling and cost-sensitive learning techniques  
+- **Deployment Perspective**: Packaging the final model into a simple API or dashboard for practical use
+
