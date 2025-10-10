@@ -24,13 +24,16 @@ The sentiment results are **not financial advice**, and the analysis is conducte
 
 ## 📁 Project Structure
 
-```text
+```bash
+
 social_sentiment_monitor_economy/
 ├── data/               # Raw and processed datasets
 ├── src/                # Crawling and sentiment analysis scripts
 ├── results/            # Visualizations and correlation outputs
 ├── README.md           # Public documentation
 └── project_plan.docx   # Internal planning notes (not uploaded to GitHub)
+
+```
 
 ## 📊 Data Description
 
