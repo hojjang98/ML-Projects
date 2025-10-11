@@ -1,0 +1,78 @@
+# Virtual environments & caches
+venv/
+.env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.pkl
+*.pickle
+
+# Jupyter / Colab
+.ipynb_checkpoints/
+*.ipynb_convert/
+*.ipynb.tmp
+*.ipynb_autosave
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS & system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.~lock*
+nohup.out
+
+# ========================================
+# 📊 Data / Model / Output directories
+# ========================================
+data/
+datasets/
+outputs/
+checkpoints/
+models/
+runs/
+results/
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.parquet
+*.json
+*.h5
+*.pt
+*.pth
+*.pkl
+*.joblib
+*.npy
+*.npz
+
+# ========================================
+# 🧠 Experiment & training logs
+# ========================================
+wandb/
+mlruns/
+tensorboard/
+*.ckpt
+
+# ========================================
+# 🔒 Security / Credentials
+# ========================================
+*.env
+*.key
+*.pem
+*.token
+*.secrets
+*.credentials
